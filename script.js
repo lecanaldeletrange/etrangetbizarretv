@@ -4,9 +4,7 @@ window.addEventListener('load', function() {
     if (typeof videos !== 'undefined') {
         grille.innerHTML = ""; 
 
-        // CONFIGURATION DE LA GRILLE
         grille.style.display = "grid";
-        // On garde les colonnes larges pour le côte à côte
         grille.style.gridTemplateColumns = "repeat(auto-fill, minmax(450px, 1fr))"; 
         grille.style.gap = "25px";
         grille.style.justifyContent = "center";
@@ -15,6 +13,10 @@ window.addEventListener('load', function() {
         grille.style.margin = "0 auto";
 
         videos.forEach(film => {
+            // Petite fonction pour afficher les requins selon la note
+            // Si film.note = 3, ça affiche 3 requins
+            const requins = "🦈".repeat(film.note || 0);
+
             grille.innerHTML += `
                 <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 10px; overflow: hidden; height: 250px;">
                     <a href="video.html?id=${film.id}" style="display: flex; text-decoration: none; color: white; height: 100%;">
@@ -24,13 +26,19 @@ window.addEventListener('load', function() {
                         </div>
                         
                         <div style="padding: 20px; display: flex; flex-direction: column; justify-content: flex-start; flex-grow: 1;">
-                            <h3 style="margin: 0 0 12px 0; font-size: 1.4em; color: #ff0000; font-family: sans-serif;">
+                            <h3 style="margin: 0 0 5px 0; font-size: 1.4em; color: #007bff; font-family: sans-serif;">
                                 ${film.titre}
                             </h3>
-                            <p style="font-size: 1em; color: #bbb; margin: 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">
+                            
+                            <div style="margin-bottom: 10px; font-size: 1.2em;">
+                                ${requins}
+                            </div>
+
+                            <p style="font-size: 1em; color: #bbb; margin: 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
                                 ${film.resume || 'Aucun résumé.'}
                             </p>
-                            <div style="margin-top: auto; font-weight: bold; color: #ff0000; text-align: right;">
+                            
+                            <div style="margin-top: auto; font-weight: bold; color: #007bff; text-align: right;">
                                 VOIR LA VIDÉO >
                             </div>
                         </div>
