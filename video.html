@@ -6,14 +6,42 @@
     <title>Lecture Vidéo - Nanar vidéo club</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Styles spécifiques à la page de lecture */
-        body { background-color: #000; color: #fff; }
-        /* Garde tes autres styles ici... */
+        /* On garde tes styles spécifiques ici */
+        body { background-color: #000; color: #fff; margin: 0; padding: 0; }
+        
+        /* On s'assure que le container vidéo prend bien toute la place */
+        .container-video { 
+            max-width: 1000px; 
+            margin: 20px auto; 
+            padding: 0 20px; 
+        }
+
+        /* Si ta zone de commentaire est petite, on lui redonne de la largeur */
+        #comment-section {
+            width: 100%;
+            margin-top: 30px;
+        }
     </style>
 </head>
-<body> <header class="banner">
-        <img src="images/nanarbann.png" alt="Bannière Nanar vidéo club">
+<body>
+
+    <header class="banner">
+        <img src="images/banniere.jpg" alt="Bannière Nanar TV">
     </header>
+
+    <main class="container-video">
+        ```
+
+### 2. Pourquoi le lecteur a disparu et le texte s'affiche mal ?
+* **Le texte brut :** Si tu vois du code écrit sur ton écran, c'est qu'une balise `<script>` ou `<style>` n'a pas été fermée correctement avec un `</script>` ou `</style>`. Le navigateur croit que c'est du texte à afficher.
+* **La zone de commentaire petite :** C'est parce qu'elle n'est plus dans son "container" (sa boîte protectrice).
+
+### 3. Ce qu'il faut vérifier en bas de page
+Assure-toi que tout en bas de ton fichier, tu as bien les fermetures dans cet ordre :
+
+```html
+    </main> <script src="video-script.js"></script> </body>
+</html>
         
         .video-container {
             max-width: 900px;
