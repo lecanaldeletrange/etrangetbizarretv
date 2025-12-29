@@ -38,7 +38,7 @@ window.addEventListener('load', function() {
                                 ${film.resume || 'Aucun résumé.'}
                             </p>
                             
-                            <div style="margin-top: auto;">
+                           <div style="margin-top: auto;">
                                 <div style="font-weight: bold; color: #007bff; text-align: right; margin-bottom: 5px; font-size: 0.9em;">
                                     VOIR LA VIDÉO >
                                 </div>
@@ -51,3 +51,5 @@ window.addEventListener('load', function() {
                 </div>
             `;
         });
+    }
+});
