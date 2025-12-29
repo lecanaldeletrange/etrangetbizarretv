@@ -13,79 +13,78 @@ body {
 
 /* --- 2. BANNIÈRE --- */
 .banner {
-    padding: 60px 20px;
+    padding: 50px 20px;
     text-align: center;
     background-color: #111;
 }
 
 .banner h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: #ff0000;
     text-transform: uppercase;
-    letter-spacing: 5px;
-    margin-bottom: 10px;
-}
-
-.banner p {
-    color: #888;
-    font-size: 1.1rem;
+    letter-spacing: 4px;
 }
 
 /* --- 3. GRILLE EN DEUX COLONNES --- */
 .container {
     display: grid;
-    /* Force 2 colonnes égales tant qu'il y a de la place */
+    /* Crée 2 colonnes égales */
     grid-template-columns: repeat(2, 1fr); 
-    gap: 30px;
-    max-width: 1000px;
+    gap: 20px;
+    max-width: 1200px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }
 
-/* --- 4. CARTES VERTICALES (Image en haut) --- */
+/* --- 4. LA CARTE (HORIZONTAL À L'INTÉRIEUR) --- */
 .card {
     background-color: #fff;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column; /* Image AU-DESSUS du texte */
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card-image {
+    display: flex; /* Aligne Image et Contenu côte à côte */
+    flex-direction: row; 
+    min-height: 200px;
     width: 100%;
-    height: 200px; /* Hauteur fixe pour que toutes les images soient alignées */
+}
+
+/* Bloc Image (prend 40% de la carte) */
+.card-image {
+    flex: 0 0 40%;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
+/* Bloc Contenu (prend 60% de la carte) */
 .card-content {
-    padding: 20px;
-    color: #333;
+    flex: 1;
+    padding: 15px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    justify-content: space-between; /* Pousse le bouton vers le bas */
+    color: #333;
     text-align: left;
 }
 
 .card-content h3 {
-    margin-bottom: 10px;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
     color: #000;
 }
 
 .card-content p {
-    margin-bottom: 20px;
-    font-size: 0.95rem;
-    flex-grow: 1; /* Pousse le bouton vers le bas pour que les boutons soient alignés */
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 10px;
+    /* Limite le texte à 3 lignes pour éviter que la carte soit trop haute */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* --- 5. BOUTON --- */
@@ -93,20 +92,21 @@ body {
     display: inline-block;
     background-color: #000;
     color: #fff;
-    padding: 10px 20px;
+    padding: 8px 12px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 4px;
     font-weight: bold;
-    text-align: center;
+    font-size: 0.8rem;
+    align-self: flex-start; /* Aligne le bouton à gauche sous le texte */
 }
 
 .btn-voir:hover {
     background-color: #ff0000;
 }
 
-/* --- 6. MOBILE (1 colonne sur téléphone) --- */
-@media (max-width: 600px) {
+/* --- 6. ADAPTATION MOBILE --- */
+@media (max-width: 1000px) {
     .container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* 1 seule colonne sur tablettes/mobiles */
     }
 }
