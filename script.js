@@ -30,7 +30,7 @@ window.addEventListener('load', function() {
                                 ${film.titre}
                             </h3>
                             
-                            <div style="margin-bottom: 10px; font-size: 1.2em;">
+                            <div style="margin-bottom: 10px; font-size: 1.2em; text-shadow: 0 0 10px #007bff, 0 0 20px #007bff;">
                                 ${requins}
                             </div>
 
