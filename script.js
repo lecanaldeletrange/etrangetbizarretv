@@ -1,23 +1,22 @@
-// 1. TA BASE DE DONNÉES
+// 1. TA BASE DE DONNÉES (Ajoute tes nanars ici)
 const videos = [
     {
-        id: "video2",
-        titre: "Manoir Hanté du Blackwood",
-        resume: "Exploration nocturne dans l'une des demeures les plus redoutées.",
-        image: "https://via.placeholder.com/400x225/333/fff",
-        urlVideo: "Lien_Video_2"
+        id: "hitman-le-cobra",
+        titre: "Hitman le Cobra",
+        resume: "Un doublage légendaire pour un film d'action aux répliques cultes.",
+        image: "images/hitman.jpg",
+        note: 5 // Nombre de têtes de mort (1 à 5)
     },
     {
-        id: "lemonstredulochness",
-        titre: "Le Monstre du Loch Ness",
-        resume: "Le monstre de ce fameux lac ne cesse de faire parler de lui... Enquête sur ce cryptide",
-        image: "images/nessie.jpg",
-        urlVideo: "https://www.youtube.com/embed/axESWHUrHw4"
+        id: "shark-island",
+        titre: "Mega Shark vs Giant Octopus",
+        resume: "Un requin géant saute sur un avion. Du grand art nanar.",
+        image: "images/shark.jpg",
+        note: 4
     }
-    // Quand tu ajoutes une vidéo, mets-la TOUJOURS en haut de la liste pour qu'elle soit la 1ère
 ];
 
-// 2. PARAMÈTRES DE LA PAGE
+// 2. PARAMÈTRES
 let pageActuelle = 1;
 const videosParPage = 20;
 
@@ -25,17 +24,17 @@ function afficherVideos() {
     const grid = document.getElementById('video-grid');
     if (!grid) return;
 
-    grid.innerHTML = ""; // Vide la grille avant d'afficher
+    grid.innerHTML = ""; 
 
-    // Calcul du début et de la fin pour la page
     const debut = (pageActuelle - 1) * videosParPage;
     const fin = debut + videosParPage;
-    
-    // On sélectionne les 20 vidéos de la page en cours
     const selection = videos.slice(debut, fin);
 
-    // Génération du HTML
+    // --- C'EST ICI QU'ON AJOUTE LA LOGIQUE DES TÊTES DE MORT ---
     selection.forEach(video => {
+        // On génère les têtes de mort selon la note (ex: 3 -> 💀💀💀)
+        let têtes = "💀".repeat(video.note || 0); 
+        
         const card = document.createElement('article');
         card.className = 'card';
         card.innerHTML = `
@@ -44,45 +43,36 @@ function afficherVideos() {
             </div>
             <div class="card-content">
                 <div>
+                    <div class="rating">${têtes}</div>
                     <h3>${video.titre}</h3>
                     <p>${video.resume}</p>
                 </div>
-                <a href="video.html?id=${video.id}" class="btn-voir">VOIR LA VIDÉO</a>
+                <a href="video.html?id=${video.id}" class="btn-voir">VOIR LE NANAR</a>
             </div>
         `;
         grid.appendChild(card);
     });
 
-    // 3. GESTION DES BOUTONS DE NAVIGATION
+    // Mise à jour de la pagination
     const infoPage = document.getElementById('page-info');
-    const btnPrev = document.getElementById('btn-prev');
-    const btnNext = document.getElementById('btn-next');
-
     if (infoPage) infoPage.innerText = `Page ${pageActuelle}`;
-
-    // Bouton Précédent : invisible si on est page 1
-    if (btnPrev) {
-        btnPrev.style.visibility = (pageActuelle === 1) ? "hidden" : "visible";
-    }
-
-    // Bouton Suivant : invisible s'il n'y a plus de vidéos après
-    if (btnNext) {
-        btnNext.style.visibility = (videos.length > fin) ? "visible" : "hidden";
-    }
+    
+    document.getElementById('btn-prev').style.visibility = (pageActuelle === 1) ? "hidden" : "visible";
+    document.getElementById('btn-next').style.visibility = (videos.length > fin) ? "visible" : "hidden";
 }
 
-// 4. ÉVÉNEMENTS DES BOUTONS
+// 3. ÉVÉNEMENTS
 document.getElementById('btn-prev')?.addEventListener('click', () => {
     pageActuelle--;
     afficherVideos();
-    window.scrollTo(0, 0); // Remonte en haut de la page
+    window.scrollTo(0, 0);
 });
 
 document.getElementById('btn-next')?.addEventListener('click', () => {
     pageActuelle++;
     afficherVideos();
-    window.scrollTo(0, 0); // Remonte en haut de la page
+    window.scrollTo(0, 0);
 });
 
-// Lancer l'affichage au chargement
+// Lancement au démarrage
 afficherVideos();
