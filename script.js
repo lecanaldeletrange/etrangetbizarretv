@@ -1,16 +1,14 @@
-// On attend que la page soit bien chargée
-window.addEventListener('DOMContentLoaded', () => {
+window.onload = function() {
     const grille = document.getElementById('video-grid');
     
-    // On vérifie si la liste "videos" existe dans videos.js
     if (typeof videos !== 'undefined') {
-        // On vide la grille au cas où
-        grille.innerHTML = "";
+        grille.innerHTML = ""; // On vide la grille
 
-        // On affiche chaque film
         videos.forEach(film => {
+            // Ici, on utilise EXACTEMENT la structure simple 
+            // qui marche avec ton fichier style.css
             grille.innerHTML += `
-                <div class="video-card">
+                <div class="video">
                     <a href="video.html?id=${film.id}">
                         <img src="${film.image}" alt="${film.titre}">
                         <h3>${film.titre}</h3>
@@ -18,7 +16,5 @@ window.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         });
-    } else {
-        grille.innerHTML = "Erreur : Le fichier videos.js n'est pas reconnu par le navigateur.";
     }
-});
+};
