@@ -6,43 +6,15 @@
     <title>Lecture Vidéo - Nanar vidéo club</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* On garde tes styles spécifiques ici */
-        body { background-color: #000; color: #fff; margin: 0; padding: 0; }
-        
-        /* On s'assure que le container vidéo prend bien toute la place */
-        .container-video { 
-            max-width: 1000px; 
-            margin: 20px auto; 
-            padding: 0 20px; 
+        /* Styles spécifiques à la page de lecture */
+        body { 
+            background-color: #000; 
+            color: #fff; 
+            margin: 0; 
+            padding: 0; 
+            font-family: sans-serif;
         }
 
-        /* Si ta zone de commentaire est petite, on lui redonne de la largeur */
-        #comment-section {
-            width: 100%;
-            margin-top: 30px;
-        }
-    </style>
-</head>
-<body>
-
-    <header class="banner">
-        <img src="images/banniere.jpg" alt="Bannière Nanar TV">
-    </header>
-
-    <main class="container-video">
-        ```
-
-### 2. Pourquoi le lecteur a disparu et le texte s'affiche mal ?
-* **Le texte brut :** Si tu vois du code écrit sur ton écran, c'est qu'une balise `<script>` ou `<style>` n'a pas été fermée correctement avec un `</script>` ou `</style>`. Le navigateur croit que c'est du texte à afficher.
-* **La zone de commentaire petite :** C'est parce qu'elle n'est plus dans son "container" (sa boîte protectrice).
-
-### 3. Ce qu'il faut vérifier en bas de page
-Assure-toi que tout en bas de ton fichier, tu as bien les fermetures dans cet ordre :
-
-```html
-    </main> <script src="video-script.js"></script> </body>
-</html>
-        
         .video-container {
             max-width: 900px;
             margin: 20px auto;
@@ -56,7 +28,7 @@ Assure-toi que tout en bas de ton fichier, tu as bien les fermetures dans cet or
             text-decoration: none;
             font-size: 0.9rem;
         }
-        .back-link:hover { color: #fff; }
+        .back-link:hover { color: #0096ff; }
 
         .player-wrapper {
             position: relative;
@@ -65,6 +37,7 @@ Assure-toi que tout en bas de ton fichier, tu as bien les fermetures dans cet or
             overflow: hidden;
             border-radius: 15px;
             background: #111;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .player-wrapper iframe {
@@ -77,30 +50,27 @@ Assure-toi que tout en bas de ton fichier, tu as bien les fermetures dans cet or
         }
 
         h1 { 
-    margin: 20px 0 10px 0; 
-    font-size: 1.8rem; 
-    color: #fff; 
-}
+            margin: 20px 0 10px 0; 
+            font-size: 1.8rem; 
+            color: #fff; 
+        }
 
-.description { 
-    color: #ccc; 
-    line-height: 1.7; 
-    font-size: 1.1rem; 
-    border-bottom: 1px solid #333; 
-    padding-bottom: 30px;
-    margin-bottom: 20px;
-    /* Sécurités pour l'affichage complet */
-    height: auto !important; 
-    min-height: 50px;
-    overflow: visible !important;
-    display: block !important;
-}
+        .description { 
+            color: #ccc; 
+            line-height: 1.7; 
+            font-size: 1.1rem; 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 30px;
+            margin-bottom: 20px;
+            height: auto; 
+            min-height: 50px;
+        }
 
         /* Zone Commentaires */
         .comment-section {
             max-width: 900px;
             margin: 40px auto;
-            padding: 20px;
+            padding: 0 20px 40px 20px;
         }
 
         .comment-box {
@@ -120,76 +90,46 @@ Assure-toi que tout en bas de ton fichier, tu as bien les fermetures dans cet or
             border-radius: 10px;
             resize: none;
             box-sizing: border-box;
+            margin-top: 10px;
         }
 
         .btn-comm {
             margin-top: 10px;
-            background: #fff;
-            color: #000;
+            background: #0096ff;
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
         }
+        
+        .btn-comm:hover { background: #007acc; }
     </style>
 </head>
 <body>
 
+    <header class="banner">
+        <img src="images/banniere.jpg" alt="Bannière Nanar TV">
+    </header>
+
     <div class="video-container">
         <a href="index.html" class="back-link">← Retour aux archives</a>
         
-        <div class="player-wrapper">
-            <iframe id="v-frame" src="" allowfullscreen></iframe>
+        <div id="video-content">
+            <p>Chargement de la vidéo...</p>
         </div>
-
-        <h1 id="v-titre">Chargement...</h1>
-        <p id="v-resume" class="description"></p>
     </div>
 
-    <section class="comment-section">
+    <div class="comment-section">
         <div class="comment-box">
             <h3>Commentaires</h3>
-            <textarea placeholder="Partagez votre avis sur ce mystère..."></textarea>
-            <button class="btn-comm">Publier le commentaire</button>
+            <textarea placeholder="Laissez un commentaire sur ce nanar..."></textarea>
+            <button class="btn-comm">Envoyer</button>
         </div>
-    </section>
+    </div>
 
-    <script>
-        // 1. La liste des vidéos (doit être identique à celle de script.js)
-        const videos = [
-            {
-                 id: "lemonstredulochness",
-        titre: "Le Monstre du Loch Ness",
-        resume: "Le monstre de ce fameux lac ne cesse de faire parler de lui... Enquête sur ce cryptide",
-        image: "images/nessie.jpg",
-        urlVideo: "https://www.youtube.com/embed/axESWHUrHw4"
-            },
-            {
-                id: "video2",
-                titre: "Titre de la Vidéo 2",
-                resume: "Résumé de la deuxième vidéo...",
-                urlVideo: "https://www.youtube.com/embed/autre_code"
-            }
-        ];
-
-        // 2. Récupération de l'ID dans l'URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get('id');
-
-        // 3. Trouver la vidéo et l'afficher
-        const video = videos.find(v => v.id === videoId);
-
-        if (video) {
-            document.getElementById('v-titre').textContent = video.titre;
-            document.getElementById('v-resume').textContent = video.resume;
-            document.getElementById('v-frame').src = video.urlVideo;
-            document.title = video.titre + " - Archives Mystères";
-        } else {
-            document.getElementById('v-titre').textContent = "Vidéo introuvable";
-            document.getElementById('v-resume').textContent = "Le lien semble être rompu ou la vidéo a été supprimée.";
-        }
-    </script>
+    <script src="video-script.js"></script>
 
 </body>
 </html>
