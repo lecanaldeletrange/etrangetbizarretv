@@ -16,7 +16,7 @@ body {
     width: 100%;
     height: 300px; /* J'ai réduit la hauteur à 300px, tu peux mettre 250px si tu veux encore plus petit */
     
-    background-image: url('images/bantv.png');
+    background-image: url('images/nanarbann.png');
     background-size: contain;     /* 'contain' permet de voir l'image ENTIÈRE sans la couper */
     background-position: center;  /* Centre l'image */
     background-repeat: no-repeat; /* Évite que l'image se répète si elle est petite */
