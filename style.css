@@ -1,0 +1,54 @@
+body {
+    background-color: #1a1a1a; /* Fond sombre */
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.banner {
+    background: #000 url('votre-banniere.jpg') center/cover;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #ff4500; /* Une ligne de couleur pour le style */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Les fameuses deux colonnes */
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.card {
+    background: #262626;
+    border: 1px solid #444;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: #ff4500;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ff4500;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-top: 10px;
+}
