@@ -1,36 +1,148 @@
+Voici le code complet et prêt à l'emploi pour ton fichier video.html.
+
+Ce code est conçu pour être propre : il récupère les infos de la vidéo, les affiche, et propose un espace commentaire sur fond noir pour rester dans l'ambiance "Mystère TV".
+HTML
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Lecture Vidéo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture Vidéo - Archives Mystères</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .video-player { max-width: 800px; margin: 20px auto; text-align: center; color: white;}
-        iframe { width: 100%; height: 450px; border-radius: 15px; border: none; }
-        .comment-section { max-width: 800px; margin: 40px auto; padding: 20px; background: #111; border-radius: 15px; }
+        /* Styles spécifiques à la page de lecture */
+        body { background-color: #000; color: #fff; }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { color: #fff; }
+
+        .player-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            background: #111;
+        }
+
+        .player-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        h1 { margin: 20px 0 10px 0; font-size: 1.8rem; }
+        .description { color: #aaa; line-height: 1.6; font-size: 1.1rem; border-bottom: 1px solid #222; padding-bottom: 30px; }
+
+        /* Zone Commentaires */
+        .comment-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .comment-box {
+            background: #111;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #222;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        .btn-comm {
+            margin-top: 10px;
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div class="video-player">
-        <a href="index.html" style="color: gray; text-decoration: none;">← Retour</a>
-        <h1 id="v-titre"></h1>
-        <iframe id="v-frame" src="" allowfullscreen></iframe>
-        <p id="v-resume" style="margin-top: 20px; font-size: 1.1rem;"></p>
+
+    <div class="video-container">
+        <a href="index.html" class="back-link">← Retour aux archives</a>
+        
+        <div class="player-wrapper">
+            <iframe id="v-frame" src="" allowfullscreen></iframe>
+        </div>
+
+        <h1 id="v-titre">Chargement...</h1>
+        <p id="v-resume" class="description"></p>
     </div>
 
-    <div class="comment-section">
-        <h3>Commentaires</h3>
-        <textarea style="width:100%; height:80px; border-radius: 10px; padding:10px;" placeholder="Laissez un commentaire..."></textarea>
-        <button style="margin-top:10px; padding:10px 20px; cursor:pointer;">Envoyer</button>
-    </div>
+    <section class="comment-section">
+        <div class="comment-box">
+            <h3>Commentaires</h3>
+            <textarea placeholder="Partagez votre avis sur ce mystère..."></textarea>
+            <button class="btn-comm">Publier le commentaire</button>
+        </div>
+    </section>
 
     <script>
-        // Ce script récupère les infos de la vidéo choisie
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get('id');
-        
-        // On va chercher dans la liste de script.js (normalement via un import, ici on simule)
-        // Pour cet exemple simple, tu peux copier la liste 'videos' ici aussi.
+        // 1. La liste des vidéos (doit être identique à celle de script.js)
+        const videos = [
+            {
+                id: "nessie-video",
+                titre: "Le Secret du Loch Ness",
+                resume: "De nouvelles images radar révèlent une forme immense dans les profondeurs du lac écossais. S'agit-il du célèbre monstre ?",
+                urlVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            },
+            {
+                id: "video2",
+                titre: "Titre de la Vidéo 2",
+                resume: "Résumé de la deuxième vidéo...",
+                urlVideo: "https://www.youtube.com/embed/autre_code"
+            }
+        ];
+
+        // 2. Récupération de l'ID dans l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('id');
+
+        // 3. Trouver la vidéo et l'afficher
+        const video = videos.find(v => v.id === videoId);
+
+        if (video) {
+            document.getElementById('v-titre').textContent = video.titre;
+            document.getElementById('v-resume').textContent = video.resume;
+            document.getElementById('v-frame').src = video.urlVideo;
+            document.title = video.titre + " - Archives Mystères";
+        } else {
+            document.getElementById('v-titre').textContent = "Vidéo introuvable";
+            document.getElementById('v-resume').textContent = "Le lien semble être rompu ou la vidéo a été supprimée.";
+        }
     </script>
+
 </body>
 </html>
