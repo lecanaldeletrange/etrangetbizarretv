@@ -1,11 +1,11 @@
 // TA BASE DE DONNÉES (Ajoute tes vidéos ici)
 const videos = [
     {
-        id: "video1",
-        titre: "Les OVNIs du Mont Chauve",
-        resume: "Enquête sur une observation historique survenue dans les Alpes en 1970.",
-        image: "https://via.placeholder.com/400x225/333/fff",
-        urlVideo: "https://www.youtube.com/embed/dQw4w9WgXcQ" // Exemple YouTube
+        id: "lemonstredulochness",
+        titre: "Le Monstre du Loch Ness",
+        resume: "Le monstre de ce fameux lac ne cesse de faire parler de lui... Enquête sur ce cryptide",
+        image: "images/nessie.jpg",
+        urlVideo: "https://www.youtube.com/watch?v=axESWHUrHw4" // Exemple YouTube
     },
     {
         id: "video2",
