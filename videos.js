@@ -1,5 +1,13 @@
 const videos = [
    {
+        id: "5",
+        titre: "Challenge the ninja",
+        resume: "Une épopée incroyable.",
+        image: "images/challengeninja.jpg",
+        videoUrl: "https://www.youtube.com/embed/PLUyDrJiYxNOZpDvfardgHhTTMSpiNsjvY",
+        description: "L' histoire poignante d' un jeune homme ne vivant que pour venger le meurtre de sa famille. C' est dit dans le film, si, si... Sinon, y' a aussi des ninjas et pleins de bruitages tout rigolo"
+    },
+   {
         id: "4",
         titre: "Ken le survivant",
         resume: "Une épopée incroyable.",
