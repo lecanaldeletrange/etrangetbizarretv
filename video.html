@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lecteur VHS</title>
+    <title>Lecteur VHS - La Nanarothèque</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body { 
@@ -18,8 +18,9 @@
         }
         .header-vhs { width: 100%; background: #111; padding: 0; text-align: center; border-bottom: 2px solid #333; line-height: 0; }
         .container { width: 90%; max-width: 900px; margin-top: 30px; text-align: center; }
-        .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; font-weight: bold; }
+        .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; font-weight: bold; margin-bottom: 10px; display: inline-block; }
         .back-btn:hover { color: red; }
+        
         h1#movie-title { 
             font-family: 'Arial Black', sans-serif; 
             margin: 20px 0; 
@@ -27,6 +28,7 @@
             letter-spacing: 2px;
             color: #eee;
         }
+
         .screen-frame {
             width: 100%;
             aspect-ratio: 16/9;
@@ -41,7 +43,7 @@
 <body>
 
     <div class="header-vhs">
-       <img src="images/bannanar2.png" style="width:100%; max-width: 1200px;">
+       <img src="images/bannanar2.png" alt="Bannière" style="width:100%; max-width: 1200px;">
     </div>
 
     <div class="container">
@@ -50,33 +52,34 @@
         <div class="screen-frame" id="player-container"></div>
     </div>
 
-   <script>
-    const params = new URLSearchParams(window.location.search);
-    const filmId = params.get('id');
-    
-    if (typeof videos !== 'undefined') {
-        const film = videos.find(v => v.id === filmId);
+    <script src="videos.js"></script>
 
-        if (film) {
-            // On affiche le titre
-            document.getElementById('movie-title').textContent = film.titre;
+    <script>
+        // 1. Récupération de l'ID dans l'URL
+        const params = new URLSearchParams(window.location.search);
+        const filmId = params.get('id');
+        
+        // 2. Vérification si la liste videos est chargée
+        if (typeof videos !== 'undefined') {
+            const film = videos.find(v => v.id === filmId);
 
-            // ON UTILISE "videoUrl" (car c'est le nom dans ton videos.js)
-            let finalUrl = film.videoUrl;
+            if (film) {
+                // Mise à jour du titre
+                document.getElementById('movie-title').textContent = film.titre;
 
-            // On injecte l'iframe
-            document.getElementById('player-container').innerHTML = `
-                <iframe 
-                    src="${finalUrl}" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>`;
+                // Injection de l'iframe YouTube
+                document.getElementById('player-container').innerHTML = `
+                    <iframe 
+                        src="${film.videoUrl}" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>`;
+            } else {
+                document.getElementById('movie-title').textContent = "Film non trouvé";
+            }
         } else {
-            document.getElementById('movie-title').textContent = "Film non trouvé";
+            document.getElementById('movie-title').textContent = "Erreur : videos.js non chargé";
         }
-    } else {
-        document.getElementById('movie-title').textContent = "Erreur : videos.js non chargé";
-    }
-</script>
+    </script>
 </body>
 </html>
