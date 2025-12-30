@@ -9,7 +9,7 @@ function displayVideos() {
         card.innerHTML = `
             <a href="video.html?id=${film.id}" style="text-decoration: none;">
                 <div class="vhs-box">
-                    <img src="images/tranche.jpg" class="vhs-tranche-img">
+                    <img src="images/vhs-texture.png" class="vhs-tranche-img">
                     
                     <img src="${film.image}" class="vhs-poster">
                     
