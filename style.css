@@ -1,3 +1,4 @@
+/* RESET DE BASE */
 body { 
     background: #050505; 
     color: white; 
@@ -5,75 +6,85 @@ body {
     font-family: sans-serif; 
 }
 
-.banner img { width: 100%; max-width: 1200px; display: block; margin: 0 auto; }
+/* BANNIÈRE */
+.banner img { 
+    width: 100%; 
+    max-width: 1200px; 
+    display: block; 
+    margin: 0 auto; 
+}
 
-/* Rangement par 5 colonnes */
+/* LE MEUBLE (GRID) : 5 colonnes par rangée */
 #video-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
-    gap: 15px;
-    padding: 30px;
-    max-width: 1100px;
+    gap: 15px; /* Espace entre les cassettes */
+    padding: 40px 20px;
+    max-width: 1300px; /* Élargi pour que les tranches ne soient pas bouffées */
     margin: 0 auto;
 }
 
-/* La Boîte VHS (Tranche) */
+/* LA TRANCHE (BOÎTE VHS) */
 .vhs-box {
     position: relative;
-    height: 350px; 
-    background: #000;
+    width: 100%;
+    height: 380px; /* Hauteur fixe pour toutes les cassettes */
+    background: #111;
     border: 1px solid #333;
-    overflow: hidden; 
+    overflow: hidden; /* Empêche tout débordement */
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-/* Texture de la tranche */
+/* LA TEXTURE VHS (vhs-texture.png) */
 .vhs-tranche-img {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* La texture remplit toute la tranche */
     z-index: 1;
-    opacity: 0.9;
 }
 
-/* Titre vertical */
+/* LE TITRE SUR LA TRANCHE (Vertical) */
 .vhs-title {
     position: absolute;
     z-index: 2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-90deg);
-    width: 320px;
+    width: 350px; /* Aligné sur la hauteur de la boîte */
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
     color: #fff;
     text-shadow: 2px 2px 5px #000;
     pointer-events: none;
+    font-size: 0.9rem;
 }
 
-/* L'AFFICHE (Correction du grignotage) */
+/* L'AFFICHE (Celle qui apparaît au survol) */
 .vhs-poster {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    /* contain au lieu de cover pour voir l'affiche entière */
-    object-fit: contain; 
-    background-color: #000; 
+    object-fit: contain; /* L'affiche est visible ENTIÈRE sans être coupée */
+    background-color: #000; /* Fond noir si l'affiche est plus étroite */
     opacity: 0;
     z-index: 3;
     transition: opacity 0.3s ease;
 }
 
-/* Au survol */
+/* EFFET AU SURVOL */
 .vhs-box:hover {
-    transform: scale(1.08);
+    transform: scale(1.05); /* Zoom léger pour l'effet sélection */
+    border-color: #ff0000; /* Bordure rouge au survol */
     z-index: 10;
-    border-color: red;
 }
 
 .vhs-box:hover .vhs-poster {
-    opacity: 1; /* L'affiche apparaît entière */
+    opacity: 1; /* L'affiche remplace la tranche */
 }
