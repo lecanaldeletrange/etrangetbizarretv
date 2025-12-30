@@ -1,11 +1,118 @@
-.vhs-title {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    color: #efefef;
+/* 1. RÉGLAGES GÉNÉRAUX */
+body { 
+    margin: 0; 
+    background: #0a0a0a; /* Noir profond style salle de ciné */
+    color: white; 
     font-family: 'Arial Black', sans-serif;
-    text-transform: uppercase;
-    font-size: 1.6em; /* Un peu plus grand */
-    letter-spacing: 4px; /* Plus d'espace entre les lettres pour le look rétro */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    padding: 20px 0;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 2. LE RAYONNAGE (La Grille) */
+#video-grid { 
+    display: grid; 
+    /* Définit 5 colonnes de taille égale */
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 50px 20px; /* 50px entre les étagères, 20px entre les K7 */
+    padding: 50px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* 3. LA CASSETTE */
+.vhs-case { 
+    position: relative; 
+    width: 80px; 
+    height: 420px; 
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+.vhs-case:hover {
+    transform: translateY(-15px) scale(1.05); /* La K7 sort du rayon au survol */
+    z-index: 10;
+}
+
+/* Le lien qui englobe toute la cassette */
+.vhs-link {
+    text-decoration: none;
+    display: block;
+    height: 100%;
+}
+
+.vhs-spine { 
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    background: #222; 
+    border-radius: 2px;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+/* 4. TEXTURE ET TEXTE */
+.texture-overlay { 
+    position: absolute;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    opacity: 0.8;
+    z-index: 1; /* Derrière le texte */
+}
+
+.vhs-info { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 2; /* Devant la texture */
+}
+
+.vhs-title { 
+    writing-mode: vertical-rl; 
+    transform: rotate(180deg); 
+    font-size: 1.5em; 
+    color: #eee; 
+    text-transform: uppercase; 
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+    white-space: nowrap;
+}
+
+/* Le petit sticker blanc en bas */
+.vhs-sticker { 
+    position: absolute; 
+    bottom: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: #ddd; 
+    color: #111; 
+    padding: 2px 6px; 
+    font-family: monospace; 
+    font-size: 0.7em; 
+    font-weight: bold;
+    z-index: 3;
+}
+
+/* 5. PAGINATION (Si tu la gardes) */
+.pagination {
+    text-align: center;
+    padding: 40px;
+}
+
+.pagination button {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    padding: 10px 20px;
+    cursor: pointer;
 }
