@@ -2,39 +2,81 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon Vidéo Club</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecteur VHS</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            background: #050505; 
+            color: white; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+        /* Style pour ta bannière (ajuste si besoin) */
+        .header-vhs { width: 100%; background: #111; padding: 15px; text-align: center; border-bottom: 2px solid #333; }
+        
+        .container { width: 90%; max-width: 900px; margin-top: 30px; text-align: center; }
+        
+        .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; }
+        .back-btn:hover { color: red; }
+
+        h1#movie-title { 
+            font-family: 'Arial Black', sans-serif; 
+            margin: 20px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+        }
+
+        .screen-frame {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border: 12px solid #1a1a1a;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            position: relative;
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
 <body>
 
-    <div style="text-align: center; padding: 20px;">
-        <a href="index.html" style="color: white; text-decoration: none;">← RETOUR AU RAYONNAGE</a>
-        
-        <h1 id="movie-title" style="color: white; font-family: 'Arial Black'; margin-top: 30px;">CHARGEMENT...</h1>
+    <div class="header-vhs">
+        <h2 style="margin:0; color:#eee;">MON VIDÉO CLUB</h2>
+    </div>
 
-        <div id="player" style="width: 80%; max-width: 800px; margin: 20px auto; aspect-ratio: 16/9; border: 5px solid #333;">
+    <div class="container">
+        <a href="index.html" class="back-btn">← Retour au rayon</a>
+        
+        <h1 id="movie-title">Chargement...</h1>
+
+        <div class="screen-frame" id="player-container">
             </div>
     </div>
 
     <script src="videos.js"></script>
-
     <script>
-        // On récupère l'ID dans l'URL
         const params = new URLSearchParams(window.location.search);
         const filmId = params.get('id');
-
-        // On cherche le film
         const film = videos.find(v => v.id === filmId);
 
         if (film) {
             document.getElementById('movie-title').textContent = film.titre;
-            // On s'assure que l'URL est bien au format embed
-            let videoUrl = film.url;
-            if (videoUrl.includes("watch?v=")) {
-                videoUrl = videoUrl.replace("watch?v=", "embed/");
+            
+            // On s'assure que le lien est bien un lien EMBED
+            let finalUrl = film.url;
+            if (finalUrl.includes("watch?v=")) {
+                finalUrl = finalUrl.replace("watch?v=", "embed/");
             }
-            document.getElementById('player').innerHTML = `
-                <iframe src="${videoUrl}?autoplay=1" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen"></iframe>
-            `;
+
+            document.getElementById('player-container').innerHTML = `
+                <iframe src="${finalUrl}?autoplay=1" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>`;
         } else {
             document.getElementById('movie-title').textContent = "Film non trouvé";
         }
