@@ -126,3 +126,17 @@ html, body {
     box-shadow: 0 0 50px rgba(0,0,0,1);
     margin: 20px auto; /* Ajoute un peu d'espace et centre */
 }
+.header-vhs { 
+    width: 100%; 
+    background: #000000; 
+    padding: 0; 
+    text-align: center; 
+    line-height: 0; 
+}
+
+.header-vhs img {
+    width: 100%; 
+    max-width: 1200px; /* Aligné sur la page vidéo */
+    height: auto;
+    display: inline-block;
+}
