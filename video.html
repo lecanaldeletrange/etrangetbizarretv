@@ -16,12 +16,11 @@
             min-height: 100vh;
             font-family: sans-serif;
         }
-        /* Style pour ta bannière (ajuste si besoin) */
-        .header-vhs { width: 100%; background: #111; padding: 15px; text-align: center; border-bottom: 2px solid #333; }
+        .header-vhs { width: 100%; background: #111; padding: 0; text-align: center; border-bottom: 2px solid #333; line-height: 0; }
         
         .container { width: 90%; max-width: 900px; margin-top: 30px; text-align: center; }
         
-        .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; }
+        .back-btn { color: #888; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; font-weight: bold; }
         .back-btn:hover { color: red; }
 
         h1#movie-title { 
@@ -29,6 +28,7 @@
             margin: 20px 0; 
             text-transform: uppercase; 
             letter-spacing: 2px;
+            color: #eee;
         }
 
         .screen-frame {
@@ -45,7 +45,7 @@
 <body>
 
     <div class="header-vhs">
-       <img src="images/bannanar2.png" style="width:100%;">
+       <img src="images/bannanar2.png" style="width:100%; max-width: 1200px;">
     </div>
 
     <div class="container">
@@ -58,34 +58,40 @@
     </div>
 
     <script src="videos.js"></script>
+
     <script>
+        // 1. On récupère l'ID dans l'URL (ex: ?id=bronx-2)
         const params = new URLSearchParams(window.location.search);
         const filmId = params.get('id');
+
+        // 2. On cherche le film correspondant dans ton fichier videos.js
         const film = videos.find(v => v.id === filmId);
 
-        if (film) {
-    document.getElementById('movie-title').textContent = film.titre;
-    
-    // On utilise exactement la structure de YouTube
-    document.getElementById('player-container').innerHTML = `
-        <iframe 
-            width="100%" 
-            height="100%" 
-            src="${film.url}" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-        </iframe>`;
-}
+        const playerContainer = document.getElementById('player-container');
+        const titleElement = document.getElementById('movie-title');
 
-            document.getElementById('player-container').innerHTML = `
-                <iframe src="${finalUrl}?autoplay=1" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
+        if (film) {
+            // Affiche le titre du film
+            titleElement.textContent = film.titre;
+            
+            // Correction automatique du lien (change "watch?v=" en "embed/")
+            let finalUrl = film.url;
+            if (finalUrl.includes("watch?v=")) {
+                finalUrl = finalUrl.replace("watch?v=", "embed/");
+            }
+
+            // 3. On injecte l'iframe avec le lien corrigé
+            playerContainer.innerHTML = `
+                <iframe 
+                    src="${finalUrl}" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
                 </iframe>`;
         } else {
-            document.getElementById('movie-title').textContent = "Film non trouvé";
+            // Si l'ID n'est pas trouvé
+            titleElement.textContent = "Film non trouvé";
+            playerContainer.innerHTML = "<p style='padding:20px;'>Vérifie l'ID dans ton fichier videos.js</p>";
         }
     </script>
 </body>
