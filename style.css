@@ -23,7 +23,7 @@ html, body {
 /* LA BOÎTE VHS */
 .vhs-box {
     position: relative;
-    width: 100px; /* Taille de la tranche au repos */
+    width: 100%; /* Taille de la tranche au repos */
     height: 350px; 
     background: #DFAF2C;
     border: 1px solid #222;
@@ -50,7 +50,7 @@ html, body {
     position: absolute;
     z-index: 2;
     top: 35%; /* Ton réglage pour qu'il soit haut */
-    left: 50px; /* Centré sur les 100px de la tranche */
+    left: 50%; /* Centré sur les 100px de la tranche */
     transform: translate(-50%, -50%) rotate(-90deg);
     width: 300px; 
     text-align: center;
