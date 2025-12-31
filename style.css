@@ -50,7 +50,7 @@ html, body {
     position: absolute;
     z-index: 2;
     top: 35%; /* Ton réglage pour qu'il soit haut */
-    left: 52px; /* Centré sur les 100px de la tranche */
+    left: 48px; /* Centré sur les 100px de la tranche */
     transform: translate(-50%, -50%) rotate(-90deg);
     width: 250px; 
     text-align: center;
