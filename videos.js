@@ -1,5 +1,13 @@
 const videos = [
     {
+        id: "8",
+        titre: "Jaguar Force",
+        resume: "Une épopée incroyable.",
+        image: "images/jaguarforce.jpg",
+        videoUrl: "https://www.youtube.com/embed/D5Kp-cTE3iQ",
+        description: "Des méchants, des gentils, des combats, bref... Un film où qu' on comprend rien à l' histoire... Et un doublage qui vaut son pesant de cahuètes. "
+    },
+    {
         id: "7",
         titre: "L' humanoïde",
         resume: "Une épopée incroyable.",
