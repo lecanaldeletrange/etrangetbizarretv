@@ -52,7 +52,7 @@ html, body {
     top: 35%; /* Ton réglage pour qu'il soit haut */
     left: 50%; /* Centré sur les 100px de la tranche */
     transform: translate(-50%, -50%) rotate(-90deg);
-    width: 300px; 
+    width: 350px; 
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
