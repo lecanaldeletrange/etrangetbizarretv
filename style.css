@@ -157,7 +157,7 @@ html, body {
     /* On se place au milieu de l'écran */
     left: 50%; 
     /* On se décale de 520px vers la droite (la moitié de ton meuble + un petit espace) */
-    margin-left: 520px; 
+    margin-left: 505px; 
     
     top: 50%;
     transform: translateY(-50%);
